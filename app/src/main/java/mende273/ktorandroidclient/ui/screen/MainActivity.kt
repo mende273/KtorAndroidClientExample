@@ -1,0 +1,50 @@
+package mende273.ktorandroidclient.ui.screen
+
+import android.os.Bundle
+import androidx.activity.ComponentActivity
+import androidx.activity.compose.setContent
+import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.items
+import androidx.compose.material3.Text
+import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.getValue
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.unit.dp
+import androidx.lifecycle.compose.collectAsStateWithLifecycle
+import mende273.ktorandroidclient.data.model.Quote
+import mende273.ktorandroidclient.ui.theme.KtorAndroidClientTheme
+import org.koin.androidx.viewmodel.ext.android.viewModel
+
+class MainActivity : ComponentActivity() {
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+
+        setContent {
+            KtorAndroidClientTheme {
+                val viewModel: MainViewModel by viewModel()
+                val quoteItems by viewModel.items.collectAsStateWithLifecycle()
+
+                LaunchedEffect(key1 = Unit, block = {
+                    viewModel.loadItems()
+                })
+
+                LazyColumn(verticalArrangement = Arrangement.SpaceBetween, content = {
+                    items(quoteItems) {
+                        QuoteItem(item = it)
+                    }
+                })
+            }
+        }
+    }
+}
+
+@Composable
+private fun QuoteItem(item: Quote) {
+    Box(modifier = Modifier.padding(16.dp)) {
+        Text(text = item.content)
+    }
+}
