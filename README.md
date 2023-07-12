@@ -1,5 +1,5 @@
 # Ktor Android Http Client Example
-Simple implementation of Ktor Http Client for Android with Kotlin Serialization
+Simple implementation of Ktor Http Client for Android with Kotlin Serialization. The project is using the free api from [quotable.io](https://github.com/lukePeavey/quotable) for providing data.
 
 ## What is a Ktor?
 [Ktor](https://ktor.io/docs/welcome.html) is an open-source framework built by JetBrains for building asynchronous servers and clients using Kotlin programming language.
