@@ -3,41 +3,41 @@ package mende273.ktorandroidclient.network
 import android.util.Log
 import io.ktor.client.HttpClient
 import io.ktor.client.engine.android.Android
-import io.ktor.client.features.DefaultRequest
-import io.ktor.client.features.defaultRequest
-import io.ktor.client.features.json.JsonFeature
-import io.ktor.client.features.json.serializer.KotlinxSerializer
-import io.ktor.client.features.logging.LogLevel
-import io.ktor.client.features.logging.Logger
-import io.ktor.client.features.logging.Logging
-import io.ktor.client.features.observer.ResponseObserver
+import io.ktor.client.plugins.DefaultRequest
+import io.ktor.client.plugins.HttpTimeout
+import io.ktor.client.plugins.contentnegotiation.ContentNegotiation
+import io.ktor.client.plugins.defaultRequest
+import io.ktor.client.plugins.logging.LogLevel
+import io.ktor.client.plugins.logging.Logger
+import io.ktor.client.plugins.logging.Logging
+import io.ktor.client.plugins.observer.ResponseObserver
 import io.ktor.client.request.accept
 import io.ktor.client.request.header
-import io.ktor.client.request.parameter
 import io.ktor.http.ContentType
 import io.ktor.http.HttpHeaders
-import io.ktor.http.HttpMethod
 import io.ktor.http.contentType
+import io.ktor.serialization.kotlinx.json.json
 import kotlinx.serialization.json.Json
 
-private const val TIME_OUT = 6000
+private const val NETWORK_TIME_OUT = 6_000L
 
 val httpClientAndroid = HttpClient(Android) {
-
-    install(JsonFeature) {
-
-        serializer = KotlinxSerializer(
+    install(ContentNegotiation) {
+        json(
             Json {
                 prettyPrint = true
                 isLenient = true
+                useAlternativeNames = true
                 ignoreUnknownKeys = true
+                encodeDefaults = false
             }
         )
+    }
 
-        engine {
-            connectTimeout = TIME_OUT
-            socketTimeout = TIME_OUT
-        }
+    install(HttpTimeout) {
+        requestTimeoutMillis = NETWORK_TIME_OUT
+        connectTimeoutMillis = NETWORK_TIME_OUT
+        socketTimeoutMillis = NETWORK_TIME_OUT
     }
 
     install(Logging) {
@@ -60,8 +60,7 @@ val httpClientAndroid = HttpClient(Android) {
     }
 
     defaultRequest {
-        parameter("key", "value")
-        if (method != HttpMethod.Get) contentType(ContentType.Application.Json)
+        contentType(ContentType.Application.Json)
         accept(ContentType.Application.Json)
     }
 }
