@@ -14,11 +14,12 @@ plugins {
     id("kotlinx-serialization")
 }
 
-implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.7.1")
-implementation("io.ktor:ktor-client-android:1.5.0")
-implementation("io.ktor:ktor-client-serialization:1.5.0")
-implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.5.1")
-implementation("io.ktor:ktor-client-logging-jvm:1.5.0")
+implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.7.3")
+implementation("io.ktor:ktor-client-android:2.3.5")
+implementation("io.ktor:ktor-client-serialization:2.3.5")
+implementation("io.ktor:ktor-client-logging:2.3.5")
+implementation("io.ktor:ktor-client-content-negotiation:2.3.5")
+implementation("io.ktor:ktor-serialization-kotlinx-json:2.3.5")
 ```
 
 #### 2. build.gradle.kts(root)
@@ -29,24 +30,25 @@ id("org.jetbrains.kotlin.plugin.serialization") version "1.6.21"
 
 #### 3. Create the Http Android Client
 ```kotlin
-private const val TIME_OUT = 6000
+private const val NETWORK_TIME_OUT = 6_000L
 
 val httpClientAndroid = HttpClient(Android) {
-
-    install(JsonFeature) {
-
-        serializer = KotlinxSerializer(
+    install(ContentNegotiation) {
+        json(
             Json {
                 prettyPrint = true
                 isLenient = true
+                useAlternativeNames = true
                 ignoreUnknownKeys = true
+                encodeDefaults = false
             }
         )
+    }
 
-        engine {
-            connectTimeout = TIME_OUT
-            socketTimeout = TIME_OUT
-        }
+    install(HttpTimeout) {
+        requestTimeoutMillis = NETWORK_TIME_OUT
+        connectTimeoutMillis = NETWORK_TIME_OUT
+        socketTimeoutMillis = NETWORK_TIME_OUT
     }
 
     install(Logging) {
@@ -69,8 +71,7 @@ val httpClientAndroid = HttpClient(Android) {
     }
 
     defaultRequest {
-        parameter("key", "value")
-        if (method != HttpMethod.Get) contentType(ContentType.Application.Json)
+        contentType(ContentType.Application.Json)
         accept(ContentType.Application.Json)
     }
 }
@@ -84,5 +85,3 @@ val httpClientAndroid = HttpClient(Android) {
 - [ViewModel](https://developer.android.com/topic/libraries/architecture/viewmodel) - The ViewModel is designed to store and manage UI-related data in a lifecycle conscious way.
 - [StateFlow](https://developer.android.com/kotlin/flow/stateflow-and-sharedflow#stateflow) - StateFlow is a state-holder observable flow that emits the current and new state updates to its collectors.
 
-## Build-tool
-You need to have [Android Studio Flamingo or above](https://developer.android.com/studio/preview) to build this project.
