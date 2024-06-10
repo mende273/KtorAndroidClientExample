@@ -57,7 +57,6 @@ android {
 dependencies {
 
     implementation("androidx.core:core-ktx:1.13.1")
-    platform("org.jetbrains.kotlin:kotlin-bom:1.9.0")
     implementation("androidx.activity:activity-compose:1.9.0")
     platform("androidx.compose:compose-bom:2024.05.00")
     implementation("androidx.compose.ui:ui")
