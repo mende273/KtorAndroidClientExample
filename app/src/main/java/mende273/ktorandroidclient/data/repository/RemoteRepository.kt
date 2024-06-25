@@ -1,7 +1,7 @@
 package mende273.ktorandroidclient.data.repository
 
-import mende273.ktorandroidclient.data.model.QuotesResults
+import mende273.ktorandroidclient.data.model.DrinksResponse
 
 interface RemoteRepository {
-    suspend fun getQuotes(): Result<QuotesResults>
+    suspend fun getDrinks(): Result<DrinksResponse>
 }
