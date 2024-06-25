@@ -19,11 +19,14 @@ fun DrinkItem(item: Drink) {
         verticalAlignment = Alignment.CenterVertically,
         horizontalArrangement = Arrangement.spacedBy(16.dp)
     ) {
-        NetworkImage(
-            modifier = Modifier.size(50.dp),
-            url = item.strDrinkThumb ?: "",
-            contentScale = ContentScale.Crop
-        )
-        Text(text = item.strDrink ?: "")
+        item.strDrinkThumb?.let {
+            NetworkImage(
+                modifier = Modifier.size(50.dp),
+                url = it,
+                contentScale = ContentScale.Crop
+            )
+        }
+
+        item.strDrink?.let { Text(text = it) }
     }
 }
