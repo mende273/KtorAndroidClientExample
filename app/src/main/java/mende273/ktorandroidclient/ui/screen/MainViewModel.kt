@@ -6,8 +6,8 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
-import mende273.ktorandroidclient.data.repository.RemoteRepositoryImpl
 import mende273.ktorandroidclient.data.model.Drink
+import mende273.ktorandroidclient.data.repository.RemoteRepositoryImpl
 
 class MainViewModel(private val remoteRepositoryImpl: RemoteRepositoryImpl) : ViewModel() {
     private val _items: MutableStateFlow<List<Drink>> = MutableStateFlow(emptyList())
@@ -15,13 +15,12 @@ class MainViewModel(private val remoteRepositoryImpl: RemoteRepositoryImpl) : Vi
 
     suspend fun loadItems() {
         viewModelScope.launch {
-            remoteRepositoryImpl.getDrinks().onSuccess { drinksResult ->
-                _items.update {
-                    drinksResult.drinks
-                }
-            }.onFailure {
-                // something went wrong
-            }
+            remoteRepositoryImpl.getDrinks().fold(
+                onSuccess = { drinks ->
+                    _items.update { drinks }
+                }, onFailure = {
+                    // something went wrong
+                })
         }
     }
 }
