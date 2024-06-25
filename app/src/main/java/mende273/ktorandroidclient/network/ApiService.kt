@@ -6,9 +6,9 @@ import io.ktor.client.request.get
 class ApiService(private val client: HttpClient) {
 
     companion object {
-        private const val END_POINT = "https://api.quotable.io/"
-        private const val QUOTES = "quotes"
+        private const val END_POINT =
+            "https://www.thecocktaildb.com/api/json/v1/1/filter.php?c=Ordinary_Drink"
     }
 
-    suspend fun getQuotes() = client.get("$END_POINT$QUOTES")
+    suspend fun getDrinks() = client.get(END_POINT)
 }
