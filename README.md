@@ -14,12 +14,12 @@ plugins {
     id("kotlinx-serialization")
 }
 
-implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.8.1")
-implementation("io.ktor:ktor-client-android:2.3.11")
-implementation("io.ktor:ktor-client-serialization:2.3.11")
-implementation("io.ktor:ktor-client-logging:2.3.11")
-implementation("io.ktor:ktor-client-content-negotiation:2.3.11")
-implementation("io.ktor:ktor-serialization-kotlinx-json:2.3.11")
+implementation(platform("io.ktor:ktor-bom:2.3.12"))
+implementation("io.ktor:ktor-client-android")
+implementation("io.ktor:ktor-client-serialization")
+implementation("io.ktor:ktor-client-logging")
+implementation("io.ktor:ktor-client-content-negotiation")
+implementation("io.ktor:ktor-serialization-kotlinx-json")
 ```
 
 #### 2. build.gradle.kts(root)
