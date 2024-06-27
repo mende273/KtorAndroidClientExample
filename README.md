@@ -23,7 +23,7 @@ implementation("io.ktor:ktor-serialization-kotlinx-json")
 ```
 
 #### 2. build.gradle.kts(root)
-- Add plugin `id("org.jetbrains.kotlin.plugin.serialization") version "2.0.0"`
+- Add Kotlin Serialization plugin
 ```kotlin
 id("org.jetbrains.kotlin.plugin.serialization") version "2.0.0"
 ```
