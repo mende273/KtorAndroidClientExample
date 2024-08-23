@@ -49,10 +49,6 @@ android {
     buildFeatures {
         compose = true
     }
-
-    composeCompiler {
-        featureFlags = setOf(ComposeFeatureFlag.StrongSkipping)
-    }
 }
 
 dependencies {
