@@ -82,7 +82,7 @@ dependencies {
     implementation("androidx.lifecycle:lifecycle-runtime-ktx:2.8.6")
 
     // Koin for Android
-    implementation("io.insert-koin:koin-androidx-compose:3.5.6")
+    implementation("io.insert-koin:koin-androidx-compose:4.0.0")
 
     //Coil
     implementation("io.coil-kt:coil-compose:2.7.0")
