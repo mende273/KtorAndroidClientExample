@@ -66,10 +66,10 @@ dependencies {
     debugImplementation("androidx.compose.ui:ui-test-manifest")
 
     // coroutines
-    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.8.1")
+    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.9.0")
 
     // ktor
-    implementation(platform("io.ktor:ktor-bom:2.3.12"))
+    implementation(platform("io.ktor:ktor-bom:3.0.0"))
     implementation("io.ktor:ktor-client-android")
     implementation("io.ktor:ktor-client-serialization")
     implementation("io.ktor:ktor-client-logging")
