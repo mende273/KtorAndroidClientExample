@@ -13,7 +13,7 @@ class MainViewModel(private val remoteRepositoryImpl: RemoteRepositoryImpl) : Vi
     private val _items: MutableStateFlow<List<Drink>> = MutableStateFlow(emptyList())
     val items: StateFlow<List<Drink>> = _items
 
-    suspend fun loadItems() {
+    fun loadItems() {
         viewModelScope.launch {
             remoteRepositoryImpl.getDrinks().fold(
                 onSuccess = { drinks ->
