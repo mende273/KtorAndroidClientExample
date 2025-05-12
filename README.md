@@ -14,7 +14,7 @@ plugins {
     id("kotlinx-serialization")
 }
 
-implementation(platform("io.ktor:ktor-bom:3.1.2"))
+implementation(platform("io.ktor:ktor-bom:3.1.3"))
 implementation("io.ktor:ktor-client-android")
 implementation("io.ktor:ktor-client-serialization")
 implementation("io.ktor:ktor-client-logging")
