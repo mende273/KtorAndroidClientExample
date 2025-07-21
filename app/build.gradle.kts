@@ -77,9 +77,9 @@ dependencies {
     implementation("io.ktor:ktor-serialization-kotlinx-json")
 
     // lifecycle
-    implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:2.9.1")
-    implementation("androidx.lifecycle:lifecycle-runtime-compose:2.9.1")
-    implementation("androidx.lifecycle:lifecycle-runtime-ktx:2.9.1")
+    implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:2.9.2")
+    implementation("androidx.lifecycle:lifecycle-runtime-compose:2.9.2")
+    implementation("androidx.lifecycle:lifecycle-runtime-ktx:2.9.2")
 
     // Koin for Android
     implementation("io.insert-koin:koin-androidx-compose:4.1.0")
