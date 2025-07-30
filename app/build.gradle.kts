@@ -69,7 +69,7 @@ dependencies {
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.10.2")
 
     // ktor
-    implementation(platform("io.ktor:ktor-bom:3.2.2"))
+    implementation(platform("io.ktor:ktor-bom:3.2.3"))
     implementation("io.ktor:ktor-client-android")
     implementation("io.ktor:ktor-client-serialization")
     implementation("io.ktor:ktor-client-logging")
