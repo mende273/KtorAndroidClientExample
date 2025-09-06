@@ -25,7 +25,7 @@ implementation("io.ktor:ktor-serialization-kotlinx-json")
 #### 2. build.gradle.kts(root)
 - Add Kotlin Serialization plugin
 ```kotlin
-id("org.jetbrains.kotlin.plugin.serialization") version "2.2.0"
+id("org.jetbrains.kotlin.plugin.serialization") version "2.2.10"
 ```
 
 #### 3. Create the Http Android Client
