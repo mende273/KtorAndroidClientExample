@@ -52,7 +52,7 @@ android {
 
 dependencies {
     implementation("androidx.core:core-ktx:1.17.0")
-    implementation("androidx.activity:activity-compose:1.11.0")
+    implementation("androidx.activity:activity-compose:1.12.0")
     platform("androidx.compose:compose-bom:2025.05.00")
     implementation("androidx.compose.ui:ui")
     implementation("androidx.compose.ui:ui-graphics")
@@ -61,15 +61,15 @@ dependencies {
     testImplementation("junit:junit:4.13.2")
     androidTestImplementation("androidx.test.ext:junit:1.3.0")
     androidTestImplementation("androidx.test.espresso:espresso-core:3.7.0")
-    androidTestImplementation("androidx.compose.ui:ui-test-junit4:1.9.4")
-    debugImplementation("androidx.compose.ui:ui-tooling:1.9.4")
+    androidTestImplementation("androidx.compose.ui:ui-test-junit4:1.9.5")
+    debugImplementation("androidx.compose.ui:ui-tooling:1.9.5")
     debugImplementation("androidx.compose.ui:ui-test-manifest")
 
     // coroutines
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.10.2")
 
     // ktor
-    implementation(platform("io.ktor:ktor-bom:3.3.2"))
+    implementation(platform("io.ktor:ktor-bom:3.3.3"))
     implementation("io.ktor:ktor-client-android")
     implementation("io.ktor:ktor-client-serialization")
     implementation("io.ktor:ktor-client-logging")
@@ -77,9 +77,9 @@ dependencies {
     implementation("io.ktor:ktor-serialization-kotlinx-json")
 
     // lifecycle
-    implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:2.9.4")
-    implementation("androidx.lifecycle:lifecycle-runtime-compose:2.9.4")
-    implementation("androidx.lifecycle:lifecycle-runtime-ktx:2.9.4")
+    implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:2.10.0")
+    implementation("androidx.lifecycle:lifecycle-runtime-compose:2.10.0")
+    implementation("androidx.lifecycle:lifecycle-runtime-ktx:2.10.0")
 
     // Koin for Android
     implementation("io.insert-koin:koin-androidx-compose:4.1.1")
