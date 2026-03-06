@@ -30,7 +30,7 @@ id("org.jetbrains.kotlin.plugin.serialization") version "2.3.10"
 
 #### 3. Create the Http Android Client
 ```kotlin
-private const val NETWORK_TIME_OUT = 6_000L
+private const val NETWORK_TIME_OUT = 15_000L
 
 val httpClientAndroid = HttpClient(Android) {
     install(ContentNegotiation) {
