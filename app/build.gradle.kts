@@ -1,3 +1,4 @@
+import com.android.build.api.dsl.ApplicationExtension
 import org.jetbrains.kotlin.gradle.dsl.JvmTarget
 
 plugins {
@@ -7,7 +8,7 @@ plugins {
     id("org.jetbrains.kotlin.plugin.compose")
 }
 
-android {
+extensions.configure<ApplicationExtension> {
     namespace = "mende273.ktorandroidclient"
     compileSdk = 36
 
@@ -39,20 +40,21 @@ android {
         targetCompatibility = JavaVersion.VERSION_17
     }
 
-    kotlin {
-        compilerOptions {
-            jvmTarget.set(JvmTarget.JVM_17)
-        }
-    }
-
     buildFeatures {
         compose = true
+        buildConfig = true
+    }
+}
+
+kotlin {
+    compilerOptions {
+        jvmTarget.set(JvmTarget.JVM_17)
     }
 }
 
 dependencies {
     implementation("androidx.core:core-ktx:1.17.0")
-    implementation("androidx.activity:activity-compose:1.12.3")
+    implementation("androidx.activity:activity-compose:1.12.4")
     platform("androidx.compose:compose-bom:2025.05.00")
     implementation("androidx.compose.ui:ui")
     implementation("androidx.compose.ui:ui-graphics")
@@ -61,15 +63,15 @@ dependencies {
     testImplementation("junit:junit:4.13.2")
     androidTestImplementation("androidx.test.ext:junit:1.3.0")
     androidTestImplementation("androidx.test.espresso:espresso-core:3.7.0")
-    androidTestImplementation("androidx.compose.ui:ui-test-junit4:1.10.2")
-    debugImplementation("androidx.compose.ui:ui-tooling:1.10.2")
+    androidTestImplementation("androidx.compose.ui:ui-test-junit4:1.10.4")
+    debugImplementation("androidx.compose.ui:ui-tooling:1.10.4")
     debugImplementation("androidx.compose.ui:ui-test-manifest")
 
     // coroutines
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.10.2")
 
     // ktor
-    implementation(platform("io.ktor:ktor-bom:3.4.0"))
+    implementation(platform("io.ktor:ktor-bom:3.4.1"))
     implementation("io.ktor:ktor-client-android")
     implementation("io.ktor:ktor-client-serialization")
     implementation("io.ktor:ktor-client-logging")
@@ -85,6 +87,6 @@ dependencies {
     implementation("io.insert-koin:koin-androidx-compose:4.1.1")
 
     //Coil
-    implementation("io.coil-kt.coil3:coil-compose:3.3.0")
-    implementation("io.coil-kt.coil3:coil-network-okhttp:3.3.0")
+    implementation("io.coil-kt.coil3:coil-compose:3.4.0")
+    implementation("io.coil-kt.coil3:coil-network-okhttp:3.4.0")
 }

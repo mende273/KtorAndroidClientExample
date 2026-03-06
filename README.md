@@ -14,7 +14,7 @@ plugins {
     id("kotlinx-serialization")
 }
 
-implementation(platform("io.ktor:ktor-bom:3.4.0"))
+implementation(platform("io.ktor:ktor-bom:3.4.1"))
 implementation("io.ktor:ktor-client-android")
 implementation("io.ktor:ktor-client-serialization")
 implementation("io.ktor:ktor-client-logging")
@@ -25,7 +25,7 @@ implementation("io.ktor:ktor-serialization-kotlinx-json")
 #### 2. build.gradle.kts(root)
 - Add Kotlin Serialization plugin
 ```kotlin
-id("org.jetbrains.kotlin.plugin.serialization") version "2.3.0"
+id("org.jetbrains.kotlin.plugin.serialization") version "2.3.10"
 ```
 
 #### 3. Create the Http Android Client
@@ -57,17 +57,13 @@ val httpClientAndroid = HttpClient(Android) {
                 Log.v("Logger Ktor =>", message)
             }
         }
-        level = LogLevel.ALL
+        level = if (BuildConfig.DEBUG) LogLevel.ALL else LogLevel.NONE
     }
 
     install(ResponseObserver) {
         onResponse { response ->
             Log.d("HTTP status:", "${response.status.value}")
         }
-    }
-
-    install(DefaultRequest) {
-        header(HttpHeaders.ContentType, ContentType.Application.Json)
     }
 
     defaultRequest {
